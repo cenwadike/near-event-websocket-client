@@ -1,0 +1,13 @@
+[package]
+name = "near-event-websocket-client"
+version = "0.1.0"
+authors = ["Chinedu E. Nwadike <chinedunwadike04@gmail.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+env_logger = "0.10.0"
+serde_json = "1.0.99"
+tokio-tungstenite = "0.19.0"
+url = "2.4.0"
