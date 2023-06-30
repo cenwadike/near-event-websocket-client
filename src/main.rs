@@ -5,6 +5,7 @@ use url::Url;
 
 pub fn main() {
     env_logger::init();
+    println!("Running..........................");
     // Pagoda open near event websocket address
     let addr = "wss://events.near.stream/ws";
 
@@ -30,9 +31,9 @@ pub fn main() {
     // attempt websocket connection
     let (mut socket, response) = connect(Url::parse(addr).unwrap())
         .expect("Failed to connect to Pagoda's mainnet event websocket");
-
+    println!("Connected to websocket sever...........................");
     // assert connection was successful
-    if response.status().is_success() {
+    if !response.status().is_server_error() {
         // send initialization message
         socket
             .write_message(Message::Text(init_msg.to_string()))
@@ -40,9 +41,10 @@ pub fn main() {
 
         // continous read event streams
         loop {
-            socket
+            let event = socket
                 .read_message()
                 .expect("Error: Failed to read event from websocket");
+            println!("NEAR event: {}", event);
         }
     } else {
         // terminate socket connection
