@@ -1,8 +1,7 @@
 use env_logger;
 use serde_json::json;
-use tokio_tungstenite::tungstenite::{connect, Message};
+use tungstenite::{connect, Message};
 use url::Url;
-
 
 pub fn main() {
     env_logger::init();
